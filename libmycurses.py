@@ -108,4 +108,15 @@ def getdata(fig,raw):
         #print len(xs),len(ys)
     return res
 
-#print getdata('/home/fujino/Dropbox/temp/1211-122759_rem_timetrend.png',raw=True) 
+if __name__ == '__main__':
+
+    func = raw_input('size, color:\n')
+
+    if func == 'size':
+        print getsize()
+    elif func == 'color':
+        r = input('red=')
+        g = input('green=')
+        b = input('blue=')
+        print setcolor([r,g,b])
+
