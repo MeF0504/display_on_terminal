@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+legacy/*
+.DS_Store
+
