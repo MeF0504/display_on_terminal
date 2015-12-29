@@ -5,6 +5,8 @@ from PIL import Image
 import argparse
 import os
 
+VERSION = '1.0'
+
 def main(fig,ctype='default',raw=False):
     res = getdata(fig,raw)
     print 'x=',len(res)
@@ -23,7 +25,8 @@ def main(fig,ctype='default',raw=False):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('fig',help='figure file.')
+    parser.add_argument('fig',help='figure file.',default=' ')
+    parser.add_argument('-v',dest='version',help='show version and exit.',action='version',version=VERSION)
     parser.add_argument('--raw',help='show fig at raw size',action='store_true')
     parser.add_argument('--no_curses',help="don't use curses module",action='store_true')
     args = parser.parse_args()
