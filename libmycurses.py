@@ -110,7 +110,7 @@ def getdata(fig,raw):
 
 if __name__ == '__main__':
 
-    func = raw_input('size, color:\n')
+    func = raw_input('size, color,data:\n')
 
     if func == 'size':
         print getsize()
@@ -119,4 +119,8 @@ if __name__ == '__main__':
         g = input('green=')
         b = input('blue=')
         print setcolor([r,g,b])
+    elif func == 'data':
+        fig = raw_input('select file:\n')
+        data = getdata(fig,raw=True)
+        print data[0][0]
 
