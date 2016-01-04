@@ -81,16 +81,15 @@ def getdata(fig,raw):
                     b = 0
                     x_sub = range(xs[i],xs[i]+rate)
                     y_sub = range(ys[j],ys[j]+rate)
+                    l = 0
                     for x in x_sub:
                         for y in y_sub:
                             #print 'a',x,y,im.size,len(x_sub),len(y_sub)
                             r += im.getpixel((x,y))[0]
                             g += im.getpixel((x,y))[1]
                             b += im.getpixel((x,y))[2]
+                            l += 1
                 except IndexError:
-                    r = 0
-                    g = 0
-                    b = 0
                     x_sub = range(xs[i],im.size[0]-1)
                     y_sub = range(ys[j],im.size[1]-1)
                     for x in x_sub:
@@ -99,9 +98,10 @@ def getdata(fig,raw):
                             r += im.getpixel((x,y))[0]
                             g += im.getpixel((x,y))[1]
                             b += im.getpixel((x,y))[2]
-                r /= (len(x_sub)*len(y_sub))
-                g /= (len(x_sub)*len(y_sub))
-                b /= (len(x_sub)*len(y_sub))
+                            l += 1
+                r /= l
+                g /= l
+                b /= l
                 sub.append((r,g,b))
             #print sub
             res.append(sub)
@@ -109,6 +109,7 @@ def getdata(fig,raw):
     return res
 
 if __name__ == '__main__':
+    import os
 
     func = raw_input('size, color,data:\n')
 
@@ -118,7 +119,11 @@ if __name__ == '__main__':
         r = input('red=')
         g = input('green=')
         b = input('blue=')
-        print setcolor([r,g,b])
+        if os.environ.has_key('TERM') and os.environ['TERM']=='xterm-256color':
+            ctype='256_colors'
+        else:
+            ctype='default'
+        print setcolor([r,g,b],ctype)
     elif func == 'data':
         fig = raw_input('select file:\n')
         data = getdata(fig,raw=True)
