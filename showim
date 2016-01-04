@@ -11,7 +11,7 @@ def main(fig,ctype='default',raw=False):
     res = getdata(fig,raw)
     print 'x=',len(res)
     print 'y=',len(res[0])
-    print res[0][0]
+    #print res[0][0]
     xsize = len(res)
     ysize = len(res[0])
     clear()
